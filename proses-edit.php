@@ -1,0 +1,26 @@
+<?php
+include("koneksi.php");
+if(isset($_POST['edit'])){
+  $id_toko=$_POST['id_bahan'];
+  $nama_bahan=$_POST['nama_bahan'];
+  $satuan=$_POST['satuan'];
+  $harga=$_POST['harga'];
+  $nama_toko=$_POST['nama_toko'];
+  $alamat=$_POST['alamat'];
+  $no_siup=$_POST['no_siup'];
+  $nama_pemilik=$_POST['nama_pemilik'];
+
+  $sql="UPDATE SET nama_bahan='$nama_bahan', satuan='$satuan', harga='$harga' WHERE id_bahan='$id_toko'";
+  $query=mysqli_query($koneksi, $sql);
+
+  $sql="UPDATE tb_toko SET nama_toko='$nama_toko', alamat='$alamat', no_siup='$no_siup', nama_pemilik='$nama_pemilik' 
+  WHERE id_bahan='$id_toko'";
+  $query=mysqli_query($koneksi, $sql);
+
+  if($query){
+    header('location:tampil.php');
+  }else{
+    die('gagal mengedit');
+  }
+}
+?>
